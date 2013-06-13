@@ -1,0 +1,6 @@
+div#messages {
+	/*border-style: inset;*/
+	width  : 500px;
+	height : 500px;
+	border : solid 1px #000000;
+}
