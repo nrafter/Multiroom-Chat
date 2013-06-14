@@ -9,15 +9,6 @@
 var messagesElement = document.getElementById('messages');
 var lastMessageElement = null;
 
-var context = new webkitAudioContext(),
-	sineWave = context.createOscillator(),
-	gainNode = context.createGainNode();
-
-sineWave.frequency.value = 300;
-//sineWave.connect(gainNode);
-gainNode.connect(context.destination);
-sineWave.noteOn(0);
-
 $("window").load(function () {
 	$('body').removeClass('preload');
 });
@@ -52,13 +43,12 @@ var user = {
 	room: $('#room').text(),
 	role: $('#role').text()
 };
-$(document).ready(function(){
-	user.nick = prompt('enter username', '');
 
-	while (!user.nick) {
-		user.nick = prompt('enter username', '');
-	}
-});
+user.nick = prompt('enter username', '');
+
+while (!user.nick) {
+	user.nick = prompt('enter username', '');
+}
 
 var socket = io.connect('http://24.126.26.31/' + user.role);
 
@@ -102,54 +92,6 @@ inputElement.onkeydown = function (keyboardEvent) {
 };
 
 $($('#messages').on('click', '.vote', function (element) {
-//	$(this).attr('class', 'voted');
+	$(this).attr('class', 'voted');
 	socket.emit('vote', this.id);
 }));
-
-/**
- *
- *   Debugging shit
- *
- */
-
-socket.on('connecting', function () {
-	console.log('connecting..');
-});
-
-socket.on('connect', function () {
-	console.log('connected!');
-});
-
-socket.on('disconnect', function () {
-	console.log('disconnected. http://i.imgur.com/pnPI8AU.png');
-});
-
-socket.on('connect_failed', function () {
-	console.log('connect_failed');
-});
-
-socket.on('error', function () {
-	console.log('error');
-});
-
-socket.on('message', function (message, callback) {
-	console.log('message');
-});
-
-socket.on('anything', function (data, callback) {
-	console.log('anything');
-});
-
-socket.on('reconnect_failed', function () {
-	console.log('reconnect_failed');
-});
-
-socket.on('reconnect', function () {
-	$('#messages').empty();
-	$('#userlist').empty();
-	console.log('reconnect');
-});
-
-socket.on('reconnecting', function () {
-	console.log('reconnecting');
-});

@@ -3,11 +3,11 @@
  */
 
 
-var express = require('express')
-	, http = require('http')
-	, path = require('path')
-	, fs = require('fs')
-	, mysql = require('mysql');
+var express = require('express');
+var http = require('http');
+var path = require('path');
+var fs = require('fs');
+var mysql = require('mysql');
 
 var app = express();
 
@@ -40,11 +40,24 @@ server.listen(3000, app.get('port'), function () {
 var db = mysql.createConnection({
 	host: '127.0.0.1',
 	user: 'testadmin',
-	password: 'password',
-	database: 'ChatLogs'
+	password: 'password'
 });
 
 db.connect();
+
+db.query('CREATE  DATABASE chat', function(err, result) {
+	if(err){
+	} else {
+		db.query('USE chat', function(err, result){
+			db.query('CREATE TABLE messages (role VARCHAR(6), room VARCHAR(32), timestamp INT(32) unsigned, username ' +
+				'varchar(24), message text);', function (err, result){
+				console.log('chat database and messages table created');
+			});
+		});
+	}
+});
+
+db.query('USE chat');
 
 /**
  * this is hash map that holds all userdata for every unique socket connection.  you get at a sockets userdata by
@@ -85,28 +98,34 @@ adminSocket.on('connection', function (socket) {
 	 */
 	socket.on('login', function(user) {
 
-//		add users to clients hash table if not already there
+		//add users to clients hash table if not already there
 		if(!chatClients[socket.id]){
 			chatClients[socket.id] = user;
 		}
 
 		//join room
-		socket.join(chatClients[socket.id].room);
+		var room = db.escape(chatClients[socket.id].room);
 
-		db.query('SELECT * FROM messages WHERE room = ' + db.escape(chatClients[socket.id].room) +
+		socket.join(room);
+
+		db.query('SELECT * FROM messages WHERE room = ' + room +
 			' ORDER BY timestamp DESC LIMIT 25', function(err, result){
-			result.forEach(function(message){
-				var timestamp = new Date(0);
-				timestamp.setUTCSeconds(message.timestamp);
-				socket.emit('serverMessage', timestamp.toLocaleTimeString() + ' : ' + message.username + ' : ' +
-					message.message);
-			});
-
-			//broadcast join message after user receives logs, so that it only requires one broadcast.
-			//the alternative is broadcast to everyone as soon as he joins, and the user as soon as he receives all the
-			// logs
-			adminSocket.to(chatClients[socket.id].room).emit('serverMessage', chatClients[socket.id].nick + ' joined.');
+			if (err){
+				console.log(err);
+			} else {
+				result.forEach(function (message) {
+					var timestamp = new Date(0);
+					timestamp.setUTCSeconds(message.timestamp);
+					socket.emit('serverMessage', timestamp.toLocaleTimeString() + ' : ' + message.username + ' : ' +
+						message.message);
+				})
+			}
 		});
+
+		//broadcast join message after user receives logs, so that it only requires one broadcast.
+		//the alternative is broadcast to everyone as soon as he joins, and the user as soon as he receives all the
+		// logs
+		adminSocket.to(chatClients[socket.id].room).emit('serverMessage', chatClients[socket.id].nick + ' joined.');
 
 		//useradd message
 		socket.broadcast.to(chatClients[socket.id].room).emit('userAdd', chatClients[socket.id].nick);
@@ -125,6 +144,8 @@ adminSocket.on('connection', function (socket) {
 
 		//send list
 		socket.to(user.room).emit('userList', usernames);
+
+
 	});
 
 	/**
@@ -132,14 +153,17 @@ adminSocket.on('connection', function (socket) {
 	 */
 	socket.on('clientMessage', function(message) {
 
+		var role = db.escape(chatClients[socket.id].role);
+		var room = db.escape(chatClients[socket.id].room);
+		var username = db.escape(chatClients[socket.id].nick);
+
 		//broadcast message to sockets (including sender, so it introduces a single entry in logging)
-		adminSocket.to(chatClients[socket.id].room).emit('serverMessage', (new Date()).toLocaleTimeString() + ' : ' +
+		adminSocket.to(room).emit('serverMessage', (new Date()).toLocaleTimeString() + ' : ' +
 			chatClients[socket.id].nick + ' : ' +
 			message);
 
-		db.query('INSERT INTO messages (room, timestamp, username, message) VALUES (' +
-			db.escape(chatClients[socket.id].room) + ', UNIX_TIMESTAMP(NOW())' + ',' +
-			db.escape(chatClients[socket.id].nick) + ',' + db.escape(message) + ')');
+		db.query('INSERT INTO messages (role, room, username, timestamp, message) VALUES (' + role + ',' +  room +
+			',' + username + ', UNIX_TIMESTAMP(NOW()),' + db.escape(message) + ')');
 	});
 
 	/**
@@ -151,6 +175,7 @@ adminSocket.on('connection', function (socket) {
 		delete chatClients[socket.id];
 	});
 });
+
 
 workerSocket.on('connection', function (socket) {
 
