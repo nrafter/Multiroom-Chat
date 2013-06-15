@@ -99,15 +99,17 @@ adminSocket.on('connection', function (socket) {
 	socket.on('login', function(user) {
 
 		//add users to clients hash table if not already there
-		if(!chatClients[socket.id]){
+		if (!chatClients[socket.id]) {
 			chatClients[socket.id] = user;
 		}
 
 		//join room
 		var room = db.escape(chatClients[socket.id].room);
+		var nick = db.escape(chatClients[socket.id].nick);
 
 		socket.join(room);
 
+		//retrieve last 25 messages from database todo: fix it show it shows messages based role
 		db.query('SELECT * FROM messages WHERE room = ' + room +
 			' ORDER BY timestamp DESC LIMIT 25', function(err, result){
 			if (err){
@@ -118,32 +120,33 @@ adminSocket.on('connection', function (socket) {
 					timestamp.setUTCSeconds(message.timestamp);
 					socket.emit('serverMessage', timestamp.toLocaleTimeString() + ' : ' + message.username + ' : ' +
 						message.message);
-				})
+				});
+
+				adminSocket.to(room).emit('serverMessage', chatClients[socket.id].nick + ' joined.');
 			}
 		});
 
 		//broadcast join message after user receives logs, so that it only requires one broadcast.
 		//the alternative is broadcast to everyone as soon as he joins, and the user as soon as he receives all the
 		// logs
-		adminSocket.to(chatClients[socket.id].room).emit('serverMessage', chatClients[socket.id].nick + ' joined.');
 
 		//useradd message
-		socket.broadcast.to(chatClients[socket.id].room).emit('userAdd', chatClients[socket.id].nick);
+		socket.broadcast.to(room).emit('userAdd', chatClients[socket.id].nick);
 
 		//get usernames list for the joining user
 		var usernames = [];
-		adminSocket.clients(user.room).forEach(function (client) {
+		adminSocket.clients(room).forEach(function (client) {
 			usernames.push(chatClients[client.id].nick);
 		});
-		workerSocket.clients(user.room).forEach(function (client) {
+		workerSocket.clients(room).forEach(function (client) {
 			usernames.push(chatClients[client.id].nick);
 		});
-		userSocket.clients(user.room).forEach(function (client) {
+		userSocket.clients(room).forEach(function (client) {
 			usernames.push(chatClients[client.id].nick);
 		});
 
 		//send list
-		socket.to(user.room).emit('userList', usernames);
+		socket.to(room).emit('userList', usernames);
 
 
 	});
@@ -153,14 +156,13 @@ adminSocket.on('connection', function (socket) {
 	 */
 	socket.on('clientMessage', function(message) {
 
+		//broadcast message to sockets (including sender, so it introduces a single entry in logging)
+		adminSocket.to(chatClients[socket.id].room).emit('serverMessage', (new Date()).toLocaleTimeString() + ' : ' +
+			chatClients[socket.id].nick + ' : ' + message);
+
 		var role = db.escape(chatClients[socket.id].role);
 		var room = db.escape(chatClients[socket.id].room);
 		var username = db.escape(chatClients[socket.id].nick);
-
-		//broadcast message to sockets (including sender, so it introduces a single entry in logging)
-		adminSocket.to(room).emit('serverMessage', (new Date()).toLocaleTimeString() + ' : ' +
-			chatClients[socket.id].nick + ' : ' +
-			message);
 
 		db.query('INSERT INTO messages (role, room, username, timestamp, message) VALUES (' + role + ',' +  room +
 			',' + username + ', UNIX_TIMESTAMP(NOW()),' + db.escape(message) + ')');
