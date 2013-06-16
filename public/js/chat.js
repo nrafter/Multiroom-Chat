@@ -15,12 +15,33 @@ $("window").load(function () {
 
 function addMessage(message) {
 	var newMessageElement = document.createElement('div');
-	var newMessageText = document.createTextNode(message);
+	var newMessageText = null;
+
+	if(typeof message == 'object'){
+		var colon = ' : ';
+		for(element in message){
+			newMessageText = document.createTextNode(message[element].timestamp +
+				colon + message[element].nick +
+				colon + message[element].message);
+			newMessageElement.appendChild(newMessageText);
+			$('#messages').append(newMessageElement);
+			lastMessageElement = newMessageElement;
+			newMessageElement = document.createElement('div');
+			newMessageText = null;
+		}
+	}
+
+	if (typeof message === 'string') {
+		newMessageText = document.createTextNode(message);
+	}
 
 	newMessageElement.appendChild(newMessageText);
-	if(lastMessageElement)
+	if(lastMessageElement){
 		$(newMessageElement).insertAfter(lastMessageElement);
-	else $('#messages').append(newMessageElement);
+	}
+	else{
+		$('#messages').append(newMessageElement);
+	}
 	lastMessageElement = newMessageElement;
 	$('#messages').scrollTop($('#messages')[0].scrollHeight);
 }
@@ -36,6 +57,7 @@ function addVote(message) {
 		$(newMessageElement).insertAfter(lastMessageElement);
 	else $('#messages').append(newMessageElement);
 	lastMessageElement = newMessageElement;
+	$('#messages').scrollTop($('#messages')[0].scrollHeight);
 }
 
 var user = {
@@ -59,10 +81,12 @@ socket.on('login', function() {
 
 socket.on('serverMessage', function(message) {
 //	alert('serverMessage');
-	if (typeof message == 'string')
+	if (message.uuid){
+		addVote(message);
+	}
+	else{
 		addMessage(message);
-	else if (typeof message == 'object')
-		addVote(message)
+	}
 });
 
 socket.on('userList', function(usernames) {
