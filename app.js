@@ -49,8 +49,8 @@ db.query('CREATE  DATABASE chat', function(err, result) {
 	if(err){
 	} else {
 		db.query('USE chat', function(err, result){
-			console.log('chat database created');
-			db.query('CREATE TABLE messages (role VARCHAR(6), room VARCHAR(32), timestamp INT(32) unsigned, username ' +
+			console.log('chat database created');	//javascript timestamp was throwing errors, used varchar instead
+			db.query('CREATE TABLE messages (role VARCHAR(6), room VARCHAR(32), timestamp VARCHAR(32), username ' +
 				'varchar(24), message text);', function (err, result){
 				console.log('messages table created');
 			});
@@ -113,19 +113,28 @@ adminSocket.on('connection', function (socket) {
 
 		socket.join(chatClients[socket.id].room);
 
-		//retrieve last 25 messages from database todo: fix it show it shows messages based role
+		var query = 'SELECT * FROM messages WHERE room = ' + room + ' ORDER BY timestamp DESC LIMIT 25';
+
 		//todo: logs are being received out of order
-		db.query('SELECT * FROM messages WHERE room = ' + room +
-			' ORDER BY timestamp DESC LIMIT 25', function(err, result){
-			if (err){
-				console.log(err);
+		//retrieve last 25 messages from database
+		db.query(query, function(err, result){
+			if (err){ console.log(err);
 			} else {
+//				console.log(result);
+				var messageArr = [];
 				result.forEach(function (message) {
 					var timestamp = new Date(0);
 					timestamp.setUTCSeconds(message.timestamp);
-					socket.emit('serverMessage', timestamp.toLocaleTimeString() + ' : ' + message.username + ' : ' +
-						message.message);
+//					socket.emit('serverMessage', timestamp.toLocaleTimeString() + ' : ' + message.username + ' : ' +
+//						message.message);
+					messageArr.push({
+						timestamp: timestamp.toLocaleTimeString(),
+						nick: message.username,
+						message: message.message
+					})
 				});
+
+				socket.to(chatClients[socket.id].room).emit('serverMessage', messageArr);
 
 				adminSocket.to(room).emit('serverMessage', chatClients[socket.id].nick + ' joined.');
 			}
@@ -169,9 +178,12 @@ adminSocket.on('connection', function (socket) {
 		var role = db.escape(chatClients[socket.id].role);
 		var room = db.escape(chatClients[socket.id].room);
 		var username = db.escape(chatClients[socket.id].nick);
+		var query = 'INSERT INTO messages (role, room, username, timestamp, message) VALUES (' + role + ',' + room +
+			',' + username + ', UNIX_TIMESTAMP(NOW()),' + db.escape(message) + ')';
 
-		db.query('INSERT INTO messages (role, room, username, timestamp, message) VALUES (' + role + ',' +  room +
-			',' + username + ', UNIX_TIMESTAMP(NOW()),' + db.escape(message) + ')');
+		db.query(query,function(err){
+			if(err) { console.log(err); }
+		});
 	});
 
 	/**
@@ -206,14 +218,14 @@ workerSocket.on('connection', function (socket) {
 		socket.join(chatClients[socket.id].room);
 
 		var room = db.escape(chatClients[socket.id].room);
+		var query = 'SELECT * FROM messages WHERE room = ' + room + ' AND role NOT IN ("admin") ORDER BY timestamp ' +
+			'DESC LIMIT 25';
 
-		db.query('SELECT * FROM messages WHERE room = ' + room + ' NOT IN ( SELECT role FROM messages WHERE ' +
-			'role = "admin" ) ORDER BY timestamp DESC LIMIT 25',
-			function (err, result) {
-			if (err) {
-				console.log(err);
+		db.query(query, function (err, result) {
+			if (err) { console.log(err);
 			} else {
 				result.forEach(function (message) {
+					console.log(message);
 					var timestamp = new Date(0);
 					timestamp.setUTCSeconds(message.timestamp);
 					socket.emit('serverMessage', timestamp.toLocaleTimeString() + ' : ' + message.username + ' : ' +
@@ -261,46 +273,53 @@ workerSocket.on('connection', function (socket) {
 			nick: chatClients[socket.id].nick,
 			uuid: uuid
 		};
+
 		candidateMessages[uuid].voted = new Array();
 		candidateMessages[uuid].voted.push(socket.id);
-
-		workerSocket.to(chatClients[socket.id].room).emit('serverMessage', candidateMessages[uuid]);
-		adminSocket.to(chatClients[socket.id].room).emit('serverMessage', timestamp + ' : ' + chatClients[socket.id].nick + ' : ' +
-			message);
 
 		var role = db.escape(chatClients[socket.id].role);
 		var room = db.escape(chatClients[socket.id].room);
 		var username = db.escape(chatClients[socket.id].nick);
+		var query = 'INSERT INTO messages (role, room, username, timestamp, message) VALUES (' + role + ',' + room +
+			',' + username + ', UNIX_TIMESTAMP(NOW()),' + db.escape(message) + ')';
 
-		db.query('INSERT INTO messages (role, room, username, timestamp, message) VALUES (' + role + ',' + room +
-			',' + username + ', UNIX_TIMESTAMP(NOW()),' + db.escape(message) + ')');
+		db.query(query, function (err) {
+			if (err) { console.log(err); }
+		});
+
+		workerSocket.to(chatClients[socket.id].room).emit('serverMessage', candidateMessages[uuid]);
+		adminSocket.to(chatClients[socket.id].room).emit('serverMessage', timestamp + ' : ' +
+			chatClients[socket.id].nick + ' : ' + message);
 
 		var sock = db.escape(candidateMessages[uuid].socketid);
 		var emessage = db.escape(candidateMessages[uuid].message);
 		var nick = db.escape(candidateMessages[uuid].nick);
 		var euuid = db.escape(uuid);
 		var votes = db.escape(candidateMessages[uuid].voted.length);
+		var query2 = 'INSERT INTO vote_messages (timestamp, socketid, message, username, uuid, vote_count) VALUES' +
+			'(UNIX_TIMESTAMP(NOW()),' + sock + ',' + emessage + ',' + nick + ',' + euuid + ',' + votes + ')';
 
-		db.query('INSERT INTO vote_messages (timestamp, socketid, message, username, uuid, vote_count) VALUES' +
-			'(UNIX_TIMESTAMP(NOW()),' + sock + ',' + emessage + ',' + nick + ',' + euuid + ',' + votes + ')',
-			function (err, result) {
-				if (err) {
-					console.log(err);
-				}
+		db.query(query2, function (err) { if(err) { console.log(err); }
 		});
 	});
 
-
 	/**
-	 * keep track of votes using socket.id and uuid of candidate opinion
+	 * keep track of votes using socket.id and uuid of votable message
 	 */
 	socket.on('vote', function (uuid){
-		if (candidateMessages[uuid].voted.indexOf(socket.id) === -1){
-			candidateMessages[uuid].voted.push(socket.id);
-			db.query('UPDATE vote_messages SET vote_count = 1 + (SELECT vote_count SET WHERE uuid = ' +
-				uuid + ')');
+		if(candidateMessages[uuid].voted.indexOf(socket.id) === -1){
+			console.log(candidateMessages[uuid].timestamp)
+			var query = 'UPDATE vote_messages SET vote_count =  vote_count + 1 WHERE uuid = "' + uuid + '"';
+
+			db.query(query , function(err, result){
+				if(err) { console.log(err);
+				} else {
+					candidateMessages[uuid].voted.push(socket.id);
+				}
+			});
 		}
 
+		//todo: check votes against database, not this, it's not reliable enough
 		if (candidateMessages[uuid].voted.length >= 3){
 			adminSocket.to(chatClients[socket.id].room).emit('serverMessage', candidateMessages[uuid]);
 			userSocket.to(chatClients[socket.id].room).emit('serverMessage', candidateMessages[uuid]);
@@ -339,10 +358,32 @@ userSocket.on('connection', function (socket) {
 		//join room
 		socket.join(chatClients[socket.id].room);
 
-		//join message
-		workerSocket.to(chatClients[socket.id].room).emit('serverMessage', chatClients[socket.id].nick + ' joined.');
-		adminSocket.to(chatClients[socket.id].room).emit('serverMessage', chatClients[socket.id].nick + ' joined.');
-		userSocket.to(chatClients[socket.id].room).emit('serverMessage', chatClients[socket.id].nick + ' joined.');
+		var room = db.escape(chatClients[socket.id].room);
+		var query = 'SELECT timestamp,username,message,role,NULL FROM messages WHERE room = ' + room + ' AND role' +
+			' NOT IN ("admin", "worker") UNION SELECT timestamp,username,message,NULL,vote_count FROM' +
+			' vote_messages WHERE vote_count >= 3 ORDER BY timestamp DESC LIMIT 25';
+
+		db.query(query, function (err, result) {
+			if (err) {
+				console.log(err);
+			} else {
+				result.forEach(function (message) {
+					console.log(message);
+					var timestamp = new Date(0);
+					timestamp.setUTCSeconds(message.timestamp);
+					socket.emit('serverMessage', timestamp.toLocaleTimeString() + ' : ' + message.username + ' : ' +
+						message.message);
+				});
+
+				//join message
+				adminSocket.to(chatClients[socket.id].room).emit('serverMessage', chatClients[socket.id].nick +
+					' joined.');
+				workerSocket.to(chatClients[socket.id].room).emit('serverMessage', chatClients[socket.id].nick +
+					' joined.');
+				userSocket.to(chatClients[socket.id].room).emit('serverMessage', chatClients[socket.id].nick +
+					' joined.');
+			}
+		});
 
 		//useradd message
 		socket.broadcast.to(chatClients[socket.id].room).emit('userAdd', chatClients[socket.id].nick);
@@ -364,7 +405,17 @@ userSocket.on('connection', function (socket) {
 	socket.on('clientMessage', function (message) {
 		var timestamp = new Date().toLocaleTimeString();
 
-		 //broadcast message to sockets (including sender, so it introduces a single entry in logging)
+		var role = db.escape(chatClients[socket.id].role);
+		var room = db.escape(chatClients[socket.id].room);
+		var username = db.escape(chatClients[socket.id].nick);
+		var query = 'INSERT INTO messages (role, room, username, timestamp, message) VALUES (' + role + ',' + room + ',' +
+			username + ', UNIX_TIMESTAMP(NOW()),' + db.escape(message) + ')';
+
+		db.query(query, function (err){
+			if (err) { console.log(err); }
+		});
+
+		//broadcast message to sockets (including sender, so it introduces a single entry in logging)
 		workerSocket.to(chatClients[socket.id].room).emit('serverMessage', timestamp + ' : ' +
 			chatClients[socket.id].nick + ' : ' + message);
 		adminSocket.to(chatClients[socket.id].room).emit('serverMessage', timestamp + ' : ' +
