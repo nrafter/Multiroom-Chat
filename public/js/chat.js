@@ -53,11 +53,12 @@ while (!user.nick) {
 var socket = io.connect('http://24.126.26.31/' + user.role);
 
 socket.on('login', function() {
-	console.log('received login request, sending username');
+//	alert('login');
 	socket.emit('login', user);
 });
 
 socket.on('serverMessage', function(message) {
+//	alert('serverMessage');
 	if (typeof message == 'string')
 		addMessage(message);
 	else if (typeof message == 'object')
@@ -65,17 +66,19 @@ socket.on('serverMessage', function(message) {
 });
 
 socket.on('userList', function(usernames) {
+//	alert('userList');
 	usernames.forEach(function(username){
-		console.log(username);
 		$('#userlist').append("<div id='" + username + "'>" + username + "</div>");
 	});
 });
 
 socket.on('userAdd', function(username) {
+//	alert('userAdd');
 	$('#userlist').append("<div id='" + username + "'>" + username + "</div>");
 });
 
 socket.on('userRemove', function(username) {
+//	alert('userRemove');
 	$('#' + username).remove();
 });
 
