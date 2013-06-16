@@ -49,10 +49,15 @@ db.query('CREATE  DATABASE chat', function(err, result) {
 	if(err){
 	} else {
 		db.query('USE chat', function(err, result){
+			console.log('chat database created');
 			db.query('CREATE TABLE messages (role VARCHAR(6), room VARCHAR(32), timestamp INT(32) unsigned, username ' +
 				'varchar(24), message text);', function (err, result){
-				console.log('chat database and messages table created');
+				console.log('messages table created');
 			});
+			db.query('CREATE TABLE vote_messages (timestamp INT(32) unsigned, socketid VARCHAR(24), message TEXT, ' +
+				'username VARCHAR(24), uuid VARCHAR(64), vote_count INT(8) unsigned);', function(err, result){
+				console.log('vote_messages table created');
+			})
 		});
 	}
 });
@@ -105,11 +110,11 @@ adminSocket.on('connection', function (socket) {
 
 		//join room
 		var room = db.escape(chatClients[socket.id].room);
-		var nick = db.escape(chatClients[socket.id].nick);
 
-		socket.join(room);
+		socket.join(chatClients[socket.id].room);
 
 		//retrieve last 25 messages from database todo: fix it show it shows messages based role
+		//todo: logs are being received out of order
 		db.query('SELECT * FROM messages WHERE room = ' + room +
 			' ORDER BY timestamp DESC LIMIT 25', function(err, result){
 			if (err){
@@ -131,22 +136,22 @@ adminSocket.on('connection', function (socket) {
 		// logs
 
 		//useradd message
-		socket.broadcast.to(room).emit('userAdd', chatClients[socket.id].nick);
+		socket.broadcast.to(chatClients[socket.id].room).emit('userAdd', chatClients[socket.id].nick);
 
 		//get usernames list for the joining user
 		var usernames = [];
-		adminSocket.clients(room).forEach(function (client) {
+		adminSocket.clients(chatClients[socket.id].room).forEach(function (client) {
 			usernames.push(chatClients[client.id].nick);
 		});
-		workerSocket.clients(room).forEach(function (client) {
+		workerSocket.clients(chatClients[socket.id].room).forEach(function (client) {
 			usernames.push(chatClients[client.id].nick);
 		});
-		userSocket.clients(room).forEach(function (client) {
+		userSocket.clients(chatClients[socket.id].room).forEach(function (client) {
 			usernames.push(chatClients[client.id].nick);
 		});
 
 		//send list
-		socket.to(room).emit('userList', usernames);
+		socket.to(chatClients[socket.id].room).emit('userList', usernames);
 
 
 	});
@@ -155,9 +160,10 @@ adminSocket.on('connection', function (socket) {
 	 *  handle messages
 	 */
 	socket.on('clientMessage', function(message) {
+		console.log('clientMessage');
 
 		//broadcast message to sockets (including sender, so it introduces a single entry in logging)
-		adminSocket.to(chatClients[socket.id].room).emit('serverMessage', (new Date()).toLocaleTimeString() + ' : ' +
+		socket.to(chatClients[socket.id].room).emit('serverMessage', (new Date()).toLocaleTimeString() + ' : ' +
 			chatClients[socket.id].nick + ' : ' + message);
 
 		var role = db.escape(chatClients[socket.id].role);
@@ -177,7 +183,6 @@ adminSocket.on('connection', function (socket) {
 		delete chatClients[socket.id];
 	});
 });
-
 
 workerSocket.on('connection', function (socket) {
 
@@ -200,9 +205,28 @@ workerSocket.on('connection', function (socket) {
 		//join room
 		socket.join(chatClients[socket.id].room);
 
-		//join message
-		workerSocket.to(chatClients[socket.id].room).emit('serverMessage', chatClients[socket.id].nick + ' joined.');
-		adminSocket.to(chatClients[socket.id].room).emit('serverMessage', chatClients[socket.id].nick + ' joined.');
+		var room = db.escape(chatClients[socket.id].room);
+
+		db.query('SELECT * FROM messages WHERE room = ' + room + ' NOT IN ( SELECT role FROM messages WHERE ' +
+			'role = "admin" ) ORDER BY timestamp DESC LIMIT 25',
+			function (err, result) {
+			if (err) {
+				console.log(err);
+			} else {
+				result.forEach(function (message) {
+					var timestamp = new Date(0);
+					timestamp.setUTCSeconds(message.timestamp);
+					socket.emit('serverMessage', timestamp.toLocaleTimeString() + ' : ' + message.username + ' : ' +
+						message.message);
+				});
+
+				//join message
+				adminSocket.to(chatClients[socket.id].room).emit('serverMessage', chatClients[socket.id].nick +
+					' joined.');
+				workerSocket.to(chatClients[socket.id].room).emit('serverMessage', chatClients[socket.id].nick +
+					' joined.');
+			}
+		});
 
 		//useradd message
 		socket.broadcast.to(chatClients[socket.id].room).emit('userAdd', chatClients[socket.id].nick);
@@ -243,7 +267,29 @@ workerSocket.on('connection', function (socket) {
 		workerSocket.to(chatClients[socket.id].room).emit('serverMessage', candidateMessages[uuid]);
 		adminSocket.to(chatClients[socket.id].room).emit('serverMessage', timestamp + ' : ' + chatClients[socket.id].nick + ' : ' +
 			message);
+
+		var role = db.escape(chatClients[socket.id].role);
+		var room = db.escape(chatClients[socket.id].room);
+		var username = db.escape(chatClients[socket.id].nick);
+
+		db.query('INSERT INTO messages (role, room, username, timestamp, message) VALUES (' + role + ',' + room +
+			',' + username + ', UNIX_TIMESTAMP(NOW()),' + db.escape(message) + ')');
+
+		var sock = db.escape(candidateMessages[uuid].socketid);
+		var emessage = db.escape(candidateMessages[uuid].message);
+		var nick = db.escape(candidateMessages[uuid].nick);
+		var euuid = db.escape(uuid);
+		var votes = db.escape(candidateMessages[uuid].voted.length);
+
+		db.query('INSERT INTO vote_messages (timestamp, socketid, message, username, uuid, vote_count) VALUES' +
+			'(UNIX_TIMESTAMP(NOW()),' + sock + ',' + emessage + ',' + nick + ',' + euuid + ',' + votes + ')',
+			function (err, result) {
+				if (err) {
+					console.log(err);
+				}
+		});
 	});
+
 
 	/**
 	 * keep track of votes using socket.id and uuid of candidate opinion
@@ -251,6 +297,8 @@ workerSocket.on('connection', function (socket) {
 	socket.on('vote', function (uuid){
 		if (candidateMessages[uuid].voted.indexOf(socket.id) === -1){
 			candidateMessages[uuid].voted.push(socket.id);
+			db.query('UPDATE vote_messages SET vote_count = 1 + (SELECT vote_count SET WHERE uuid = ' +
+				uuid + ')');
 		}
 
 		if (candidateMessages[uuid].voted.length >= 3){
