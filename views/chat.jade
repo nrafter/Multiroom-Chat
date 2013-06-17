@@ -1,158 +1,77 @@
-//
-	Created with JetBrains WebStorm.
-	User: metaljello
-	Date: 6/7/13
-	Time: 11:32 PM
-	To change this template use File | Settings | File Templates.
-
 html
 	head
-		style
-
-			.modalDialog{
-				position: fixed;
-				font-family: Arial, Helvetica, sans-serif;
-				top:0;
-				right:0;
-				bottom:0;
-				left:0;
-				background: rgba(0,0,0,0.8);
-				z-index: 99999;
-				opacity:0;
-				-webkit-transition : opacity 400ms ease-in;
-				-moz-transition: opacity 400ms ease-in;
-				transition: opacity 400ms ease-in;
-				pointer-events: none;
-			}
-
-			.preload * {
-				-webkit-transition: none !important;
-				-moz-transition: none !important;
-				-ms-transition: none !important;
-				-o-transition: none !important;
-			}
-
-			.modalDialog:target {
-				opacity:1;
-				pointer-events: auto;
-			}
-
-			.modalDialog > div {
-				width: 400px;
-				position: relative;
-				margin: 10% auto;
-				padding: 5px 20px 13px 20px;
-				border-radius: 10px;
-				background: #fff;
-				background: -moz-linear-gradient(#fff, #999);
-				background: -webkit-linear-gradient(#fff, #999);
-				background: -o-linear-gradient(#fff, #999);
-			}
-
-			.modalDialog > input {
-				width: 200px;
-			}
-
-			.close {
-				background: #606061;
-				color: #FFFFFF;
-				line-height: 25px;
-				position: absolute;
-				right: -12px;
-				text-align: center;
-				top: -10px;
-				width: 24px;
-				text-decoration: none;
-				font-weight: bold;
-				-webkit-border-radius: 12px;
-				-moz-border-radius: 12px;
-				border-radius: 12px;
-				-moz-box-shadow: 1px 1px 3px #000;
-				-webkit-box-shadow: 1px 1px 3px #000;
-				box-shadow: 1px 1px 3px #000;
-			}
-
-			.close:hover {
-				background: #00d9ff;
-			}
-
-			body {
-				margin: 0;
-				font-family : Verdana;
-			}
-
-			#chatbox {
-				float     : left;
-				width     : 100%;
-			}
-
-			#messages {
-				height : 500px;
-				border : solid 1px #000000;
-				word-wrap : break-word;
-				overflow: auto;
-			}
-
-			.vote {
-				background: lawngreen;
-			}
-
-			.vote:hover {
-				background : #f4ff06;
-			}
-
-			.voted {
-				background: #ffaf0d;
-			}
-
-			#userlist {
-				width    : 150px;
-				height   : 500px;
-				border   : solid 1px #000000;
-				overflow : auto;
-				margin-right : -1000px;
-			}
-
-			#container2 {
-				float:left;
-				width:400px;
-				margin-right:-1000px;
-			}
-			#input {
-				width: 100%;
-			}
-
-			#container {
-				margin: 100 auto;
-				max-width: 1000;
-				padding-right: 150px;
-			}
-
-			#vars {
-				display:none;
-			}
-
-		style(src='/css/chat.css')
-		style(src='//ajax.googleapis.com/ajax/libs/jqueryui/1.8.10/themes/base/jquery-ui.css')
-		title #{title}
-	body.preload
-		a(href='#openModal') Join
-		div#openModal.modalDialog
-			div
-				a.close(href='#close',title='Close') x
-				input#enterUsername(type="text", placeholder="Enter a Username")
-	div#container
-			div#chatbox
-				div#messages
-				br
-				input#input(type="text")
-				div#vars
-					div#room= room
-					div#role= role
-			div#container2
-				div#userlist
-
+	link(rel='stylesheet',href='/css/chat.css')
+	link(rel='stylesheet',href='/css/newstyle.css')
+	link(rel='stylesheet',href='/fonts/stylesheet.css')
+	link(rel='stylesheet',href='/legion/legion.css')
+	link(rel='stylesheet',href='/legion/legion.js')
+	style(src='//ajax.googleapis.com/ajax/libs/jqueryui/1.8.10/themes/base/jquery-ui.css')
 	script(src='//ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js')
-	script(src='//ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js')
 	script(src='/socket.io/socket.io.js')
 	script(src='/js/chat.js')
+	title Chorus
+	body.photo-1
+	#header
+		.wrap
+			.logo
+				img(src ='/img/chorus_03.png')
+	#main-interface
+	//
+		#container
+	.page-content
+		#boxwindow(style='margin-top: 100px; position: relative; left: 00px;')
+			h1 Important Facts
+			.fact
+				p This is a fact
+				.vote
+					p + -
+			form
+				input#mike(type='text', x-webkit-speech='', onchange='transcribe(this.value)', onwebkitspeechchange='transcribe(this.value)', onclick='this.value=\'\';', onfocus='this.select()', onblur='this.value=!this.value?:this.value;', placeholder='Enter important facts...')
+			//
+					<div id="participation" style = 'position:relative; top:160px; float:left; padding-left:10px'>Messages Left:<h2 id="votes-allowed" style='display:inline; font-size:12px'>0</h2></div>
+					input.submit(type='submit', value='Enter')
+		#boxwindow(style='position: relative; float: right; top: -235px; left: -50px;')
+			h1 Chat
+		h3(style='margin-left: 350px;') Instructions
+		.hr
+		ul.steps
+			li.step-1
+				h4 Incentive
+				p
+					strong You will receive rewards for all activities only if they help the requester.
+					br
+					| The biggest rewards are given when other workers agree with your helpful input!
+			li.step-2
+				h4 Help Out
+				p
+					| Please
+					strong do not vote for messages that do not help the requester
+					| ; you will be penalized for doing so.
+					br
+					| If you agree with an 'Important Fact', vote for it by pressing the "+" button, otherwise press the "-" button.
+			li.step-3
+				h4 Vote
+				p
+					strong
+						| Messages in 'Important Facts' and those highlighted in pink CANNOT be seen by the requester!
+						strong
+							br
+							| Vote on messages that should be seen by the requester by clicking them.
+						br
+	.footer
+		.copyright
+			| RocHCI.
+
+//
+	#chatbox
+				#messages
+				br
+				//input#mike(type='text',x-webkit-speech,placeholder='Enter important facts...')
+				input#mike(type='text', x-webkit-speech='', onchange='transcribe(this.value)', onwebkitspeechchange='transcribe(this.value)', onclick='this.value=\'\';', onfocus='this.select()', onblur='this.value=!this.value?:this.value;', placeholder='Enter important facts...')
+				//onchange="transcribe(this.value)",onwebkitspeechchange="transcribe(this.value)"
+				//onclick="this.value='';",onfocus="this.select()",onblur="this.value=!this.value?:this.value;"
+			#vars
+				#room= room
+				#role= role
+	#container2
+		#userlist

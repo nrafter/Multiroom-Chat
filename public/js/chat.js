@@ -5,6 +5,13 @@
  * Time: 12:00 AM
  * To change this template use File | Settings | File Templates.
  */
+	//todo: add "cursor: pointer;" to .vote
+	//todo: show number of votes beside each message
+
+	//todo: http://roc.cs.rochester.edu/convInterface/chorus/indexRoles.php?role=crowd&part=c&task=nick1&workerId=ww2&assignmentId=&hitId=&turkSubmitTo=&min=
+	//todo: change the role to ?role=requester
+	//todo: http://roc.cs.rochester.edu/convInterface/memory/index.php
+
 
 var messagesElement = document.getElementById('messages');
 var lastMessageElement = null;

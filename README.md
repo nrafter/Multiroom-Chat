@@ -44,4 +44,5 @@ either string or object.
 How to use
 ---
 
-...
+
+
