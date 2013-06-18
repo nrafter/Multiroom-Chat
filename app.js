@@ -113,7 +113,7 @@ adminSocket.on('connection', function (socket) {
 
 		socket.join(chatClients[socket.id].room);
 
-		var query = 'SELECT * FROM messages WHERE room = ' + room + ' ORDER BY timestamp DESC LIMIT 25';
+		var query = 'SELECT * FROM messages WHERE room = ' + room + ' ORDER BY timestamp DESC LIMIT 15';
 
 		//todo: logs are being received out of order
 		//retrieve last 25 messages from database
@@ -219,7 +219,7 @@ workerSocket.on('connection', function (socket) {
 
 		var room = db.escape(chatClients[socket.id].room);
 		var query = 'SELECT * FROM messages WHERE room = ' + room + ' AND role NOT IN ("admin") ORDER BY timestamp ' +
-			'DESC LIMIT 25';
+			'DESC LIMIT 15';
 
 		db.query(query, function (err, result) {
 			if (err) { console.log(err);
@@ -361,7 +361,7 @@ userSocket.on('connection', function (socket) {
 		var room = db.escape(chatClients[socket.id].room);
 		var query = 'SELECT timestamp,username,message,role,NULL FROM messages WHERE room = ' + room + ' AND role' +
 			' NOT IN ("admin", "worker") UNION SELECT timestamp,username,message,NULL,vote_count FROM' +
-			' vote_messages WHERE vote_count >= 3 ORDER BY timestamp DESC LIMIT 25';
+			' vote_messages WHERE vote_count >= 3 ORDER BY timestamp DESC LIMIT 15';
 
 		db.query(query, function (err, result) {
 			if (err) {

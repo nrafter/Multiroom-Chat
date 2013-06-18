@@ -1,77 +1,56 @@
 html
 	head
-	link(rel='stylesheet',href='/css/chat.css')
-	link(rel='stylesheet',href='/css/newstyle.css')
-	link(rel='stylesheet',href='/fonts/stylesheet.css')
-	link(rel='stylesheet',href='/legion/legion.css')
-	link(rel='stylesheet',href='/legion/legion.js')
-	style(src='//ajax.googleapis.com/ajax/libs/jqueryui/1.8.10/themes/base/jquery-ui.css')
+		link(rel='stylesheet',href='/fonts/stylesheet.css')
+		link(rel='stylesheet',href='/css/chat.css')
+		title Chorus
+	body
+		#header
+			.wrap
+				.logo
+					img(src='../../img/chorus_03.png', style='margin-left: -43px;')
+		#boxwindow
+			h1 Chat
+			#chatbox
+				#innercontainer
+					#messages
+					input#input(type="text")
+					#vars
+						#room= room
+						#role= role
+				#users
+					#userlist
+		#instructions
+			ul.steps
+				.hr
+				h3 Instructions
+				li.step-1
+					h4 Incentive
+					p
+						strong You will receive rewards for all activities only if they help the requester.
+						br
+						| The biggest rewards are given when other workers agree with your helpful input!
+				li.step-2
+					h4 Help Out
+					p
+						| Please
+						strong do not vote for messages that do not help the requester
+						| ; you will be penalized for doing so.
+						br
+						| If you agree with an 'Important Fact', vote for it by pressing the "+" button, otherwise press the "-" button.
+				li.step-3
+					h4 Vote
+					p
+						strong
+							| Messages in 'Important Facts' and those highlighted in pink CANNOT be seen by the requester!
+							strong
+								br
+								| Vote on messages that should be seen by the requester by clicking them.
+							br
+		.footer
+			.copyright
+				| RocHCI.
+
+
 	script(src='//ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js')
 	script(src='/socket.io/socket.io.js')
 	script(src='/js/chat.js')
-	title Chorus
-	body.photo-1
-	#header
-		.wrap
-			.logo
-				img(src ='/img/chorus_03.png')
-	#main-interface
-	//
-		#container
-	.page-content
-		#boxwindow(style='margin-top: 100px; position: relative; left: 00px;')
-			h1 Important Facts
-			.fact
-				p This is a fact
-				.vote
-					p + -
-			form
-				input#mike(type='text', x-webkit-speech='', onchange='transcribe(this.value)', onwebkitspeechchange='transcribe(this.value)', onclick='this.value=\'\';', onfocus='this.select()', onblur='this.value=!this.value?:this.value;', placeholder='Enter important facts...')
-			//
-					<div id="participation" style = 'position:relative; top:160px; float:left; padding-left:10px'>Messages Left:<h2 id="votes-allowed" style='display:inline; font-size:12px'>0</h2></div>
-					input.submit(type='submit', value='Enter')
-		#boxwindow(style='position: relative; float: right; top: -235px; left: -50px;')
-			h1 Chat
-		h3(style='margin-left: 350px;') Instructions
-		.hr
-		ul.steps
-			li.step-1
-				h4 Incentive
-				p
-					strong You will receive rewards for all activities only if they help the requester.
-					br
-					| The biggest rewards are given when other workers agree with your helpful input!
-			li.step-2
-				h4 Help Out
-				p
-					| Please
-					strong do not vote for messages that do not help the requester
-					| ; you will be penalized for doing so.
-					br
-					| If you agree with an 'Important Fact', vote for it by pressing the "+" button, otherwise press the "-" button.
-			li.step-3
-				h4 Vote
-				p
-					strong
-						| Messages in 'Important Facts' and those highlighted in pink CANNOT be seen by the requester!
-						strong
-							br
-							| Vote on messages that should be seen by the requester by clicking them.
-						br
-	.footer
-		.copyright
-			| RocHCI.
-
-//
-	#chatbox
-				#messages
-				br
-				//input#mike(type='text',x-webkit-speech,placeholder='Enter important facts...')
-				input#mike(type='text', x-webkit-speech='', onchange='transcribe(this.value)', onwebkitspeechchange='transcribe(this.value)', onclick='this.value=\'\';', onfocus='this.select()', onblur='this.value=!this.value?:this.value;', placeholder='Enter important facts...')
-				//onchange="transcribe(this.value)",onwebkitspeechchange="transcribe(this.value)"
-				//onclick="this.value='';",onfocus="this.select()",onblur="this.value=!this.value?:this.value;"
-			#vars
-				#room= room
-				#role= role
-	#container2
-		#userlist

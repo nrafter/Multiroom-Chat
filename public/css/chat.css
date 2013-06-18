@@ -1,6 +1,183 @@
-div#messages {
-	/*border-style: inset;*/
-	width  : 500px;
-	height : 500px;
-	border : solid 1px #000000;
+body {
+	background: 960px #f5f5f5 repeat;
+	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+	margin: 0;padding: 0;
+}
+
+.wrap {
+		position:relative;
+		margin:0 auto;
+		width:900px;
+	}
+
+	#header, #footer {
+		width:100%;
+		float:left;
+		background-color: white;
+	}
+
+#chatbox {
+	float : left;
+	width : 100%;
+}
+
+#messages {
+	height    : 100%;
+	border    : solid 1px #000000;
+	word-wrap : break-word;
+	overflow  : auto;
+}
+
+.vote {
+	background : lawngreen;
+}
+
+.vote:hover {
+	background : #f4ff06;
+}
+
+.voted {
+	background : #ffaf0d;
+}
+
+#userlist {
+	width        : 125px;
+	height       : 100%;
+	border       : solid 1px #000000;
+	overflow     : auto;
+	margin-right : -1000px;
+}
+
+#users {
+	float        : left;
+	width        : 400px;
+	margin-right : -1000px;
+}
+
+#input {
+	width : 100%;
+}
+
+#boxwindow {
+	margin-bottom : 100px;
+	margin-left   : auto;
+	margin-right  : auto;
+	height        : 500px;
+	max-width     : 1000;
+	padding-right : 150px;
+	background-color:rgb(247,247,249);
+	-moz-border-radius: 3px;
+	-webkit-border-radius: 3px;
+	border-radius: 3px;
+	-moz-box-shadow:0px 0px 0px 8px rgba(0,0,0,0.06) ,0px 1px 4px 0px rgba(0,0,0,0.5);
+	-webkit-box-shadow:0px 0px 0px 8px rgba(0,0,0,0.06) ,0px 1px 4px 0px rgba(0,0,0,0.5);
+	box-shadow:0px 0px 0px 8px rgba(0,0,0,0.06) ,0px 1px 4px 0px rgba(0,0,0,0.5);
+	-ms-filter:"progid:DXImageTransform.Microsoft.Glow(Color=#f000000,Strength=8)
+		progid:DXImageTransform.Microsoft.dropshadow(OffX = 0,OffY = 1,Color = #80000000,Positive = true)";
+	filter:progid:DXImageTransform.Microsoft.Glow(Color=#f000000,Strength=8)
+		progid:DXImageTransform.Microsoft.dropshadow(OffX = 0,OffY = 1,Color = #80000000,Positive = true);
+
+}
+
+#innercontainer {
+	float: left;
+	width: 100%;
+}
+
+.footer{
+	text-align: center;
+}
+
+.hr {
+	width: 960px;
+	height: 11px;
+	background: url(../img/hr.png) no-repeat;
+	display: block;
+	margin: 40px auto;
+}
+
+h3 {
+	font-family : 'LeagueGothicRegular';
+	font-size      : 62px;
+	text-transform : uppercase;
+	letter-spacing : -1px;
+	text-shadow    : 0 1px 0 #fff;
+	color : #3e444a;
+	margin : auto;
+}
+
+#vars {
+	display : none;
+}
+
+ul.steps {
+	list-style : none;
+	width      : 960px;
+	margin     : 175 auto;
+	text-align : center;
+}
+
+ul.steps li {
+	float  : left;
+	width  : 300px;
+	margin : 0 10px;
+}
+
+ul.steps li.step-1 {
+	background : url(../img/step-1.png) no-repeat center top;
+}
+
+ul.steps li.step-2 {
+	background : url(../img/step-2.png) no-repeat center top;
+}
+
+ul.steps li.step-3 {
+	background : url(../img/step-3.png) no-repeat center top;
+}
+
+.steps h4 {
+	font-size  : 22px;
+	color      : #353434;
+	text-align : center;
+	margin     : 135px 0 15px 0;
+}
+
+.steps p {
+	font-size      : 14px;
+	color          : #a6adb6;
+	margin         : 0;
+	letter-spacing : 0px;
+}
+
+.footer {
+	width  : 960px;
+	margin : 0 auto;
+}
+
+.footer .logo {
+	width       : 121px;
+	height      : 45px;
+	background  : url(../img/chorus_03.png);
+	text-indent : -4999px;
+	float       : left;
+	margin      : 30px 0 20px 0;
+}
+
+.footer .tagline {
+	float          : left;
+	margin         : 45px 0 0 20px;
+	color          : #858585;
+	font-size      : 16px;
+	font-weight    : lighter;
+	letter-spacing : 1px;
+}
+
+.copyright {
+	clear          : both;
+	border-top     : 1px solid #eee;
+	padding        : 20px 0 40px 0;
+	color          : #858585;
+	font-size      : 12px;
+	font-weight    : lighter;
+	letter-spacing : 1px;
 }

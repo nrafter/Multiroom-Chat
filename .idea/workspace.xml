@@ -1,35 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="e5d72609-2f00-4acc-a6c6-0147fe75d083" name="Default" comment="updates">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/img/chorus_03.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/img/hr.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/img/step-1.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/img/step-2.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/img/step-3.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/img/top.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/js/embed_fms.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/js/gup.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/legion/legion.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/legion/legion.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/css/newstyle.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/css/originalchatstyles.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/fonts/stylesheet.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/js/theotherchat.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/README.md" afterPath="$PROJECT_DIR$/README.md" />
+    <list default="true" id="e5d72609-2f00-4acc-a6c6-0147fe75d083" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/fonts/League_Gothic-webfont (1).eot" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/fonts/League_Gothic-webfont.eot" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/fonts/League_Gothic-webfont.ttf" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/fonts/League_Gothic-webfont.woff" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/fonts/League_Gothic-webfont.svg" />
+      <change type="DELETED" beforePath="C:\Users\metaljello\Documents\GitHub\Multiroom-Chat\public\css\newstyle.css" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app.js" afterPath="$PROJECT_DIR$/app.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/css/chat.css" afterPath="$PROJECT_DIR$/public/css/chat.css" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/chat.jade" afterPath="$PROJECT_DIR$/views/chat.jade" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/js/chat.js" afterPath="$PROJECT_DIR$/public/js/chat.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <list id="c0776cc1-69d6-4a5b-83b6-88a39ab52b68" name="Rejected commit: Default" comment="fit inside 120 columns" />
     <ignored path="MultiroomChat.iws" />
     <ignored path=".idea/workspace.xml" />
-    <file path="/Dummy.txt" changelist="e5d72609-2f00-4acc-a6c6-0147fe75d083" time="1371442536449" ignored="false" />
+    <file path="/Dummy.txt" changelist="e5d72609-2f00-4acc-a6c6-0147fe75d083" time="1371531458515" ignored="false" />
     <file path="/app.js" changelist="e5d72609-2f00-4acc-a6c6-0147fe75d083" time="1371410403034" ignored="false" />
     <file path="/README.md" changelist="e5d72609-2f00-4acc-a6c6-0147fe75d083" time="1371230654900" ignored="false" />
     <file path="/chat.js" changelist="e5d72609-2f00-4acc-a6c6-0147fe75d083" time="1371428002779" ignored="false" />
-    <file path="/chat.jade" changelist="e5d72609-2f00-4acc-a6c6-0147fe75d083" time="1371442233127" ignored="false" />
+    <file path="/chat.jade" changelist="e5d72609-2f00-4acc-a6c6-0147fe75d083" time="1371517191424" ignored="false" />
     <file path="/a.jade" changelist="e5d72609-2f00-4acc-a6c6-0147fe75d083" time="1371439284374" ignored="false" />
+    <file path="/chat.css" changelist="e5d72609-2f00-4acc-a6c6-0147fe75d083" time="1371517203153" ignored="false" />
+    <file path="/newstyle.css" changelist="e5d72609-2f00-4acc-a6c6-0147fe75d083" time="1371508034873" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -49,20 +43,70 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="README.md" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/README.md">
+      <file leaf-file-name="chat.css" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/public/css/chat.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="6" column="26" selection-start="380" selection-end="380" vertical-scroll-proportion="0.09163803">
+            <state line="60" column="11" selection-start="801" selection-end="801" vertical-scroll-proportion="-4.92">
+              <folding>
+                <element signature="e#5#128#0" expanded="false" />
+                <element signature="e#136#193#0" expanded="false" />
+                <element signature="e#213#272#0" expanded="false" />
+                <element signature="e#283#316#0" expanded="false" />
+                <element signature="e#476#502#0" expanded="false" />
+                <element signature="e#511#537#0" expanded="false" />
+                <element signature="e#688#761#0" expanded="false" />
+                <element signature="e#770#788#0" expanded="false" />
+                <element signature="e#801#1664#0" expanded="false" />
+                <element signature="e#1682#1713#0" expanded="false" />
+                <element signature="e#1722#1746#0" expanded="false" />
+                <element signature="e#1752#1865#0" expanded="false" />
+                <element signature="e#1870#2054#0" expanded="false" />
+                <element signature="e#2062#2082#0" expanded="false" />
+                <element signature="e#2093#2183#0" expanded="false" />
+                <element signature="e#2197#2251#0" expanded="false" />
+                <element signature="e#2272#2334#0" expanded="false" />
+                <element signature="e#2355#2417#0" expanded="false" />
+                <element signature="e#2438#2500#0" expanded="false" />
+                <element signature="e#2512#2610#0" expanded="false" />
+                <element signature="e#2621#2719#0" expanded="false" />
+                <element signature="e#2729#2767#0" expanded="false" />
+                <element signature="e#2965#3126#0" expanded="false" />
+                <element signature="e#3139#3334#0" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="chat.jade" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/views/chat.jade">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="4" column="20" selection-start="125" selection-end="125" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="originalchatstyles.css" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/public/css/originalchatstyles.css">
+      <file leaf-file-name="chat.js" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/public/js/chat.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="126" column="0" selection-start="2507" selection-end="2507" vertical-scroll-proportion="0.0">
-              <folding />
+            <state line="49" column="42" selection-start="1525" selection-end="1525" vertical-scroll-proportion="0.0">
+              <folding>
+                <element signature="n#!!block;n#addVote#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="app.js" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="363" column="82" selection-start="12050" selection-end="12050" vertical-scroll-proportion="3.421162">
+              <folding>
+                <element signature="e#3373#5415#0" expanded="true" />
+                <element signature="e#6815#8412#0" expanded="true" />
+                <element signature="e#10229#10923#0" expanded="true" />
+                <element signature="e#10486#10595#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -88,19 +132,22 @@
       <list>
         <option value="$PROJECT_DIR$/.idea/workspace.xml" />
         <option value="$PROJECT_DIR$/README.md" />
-        <option value="$PROJECT_DIR$/app.js" />
         <option value="$PROJECT_DIR$/public/js/chat.js" />
         <option value="$PROJECT_DIR$/public/js/chat-from-template-or-something.js" />
         <option value="$PROJECT_DIR$/public/css/originalchatstyles.css" />
+        <option value="$PROJECT_DIR$/public/css/newstyle.css" />
+        <option value="$PROJECT_DIR$/public/scripts/chat.js" />
+        <option value="$PROJECT_DIR$/app.js" />
         <option value="$PROJECT_DIR$/views/chat.jade" />
+        <option value="$PROJECT_DIR$/public/css/chat.css" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="-8" />
-    <option name="y" value="-8" />
-    <option name="width" value="1936" />
-    <option name="height" value="1056" />
+    <option name="x" value="-1608" />
+    <option name="y" value="172" />
+    <option name="width" value="1616" />
+    <option name="height" value="916" />
   </component>
   <component name="ProjectInspectionProfilesVisibleTreeState">
     <entry key="Project Default">
@@ -144,7 +191,6 @@
       <sortByType />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -163,112 +209,9 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="MultiroomChat" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Multiroom-Chat" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="public" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="MultiroomChat" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Multiroom-Chat" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="public" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="legion" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="MultiroomChat" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Multiroom-Chat" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="public" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="js" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="MultiroomChat" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Multiroom-Chat" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="public" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="img" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="MultiroomChat" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Multiroom-Chat" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="public" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="fonts" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="MultiroomChat" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Multiroom-Chat" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="public" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="css" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -294,7 +237,7 @@
     <property name="FileHistory.git4idea.history.GitHistoryProvider_treeOrder3" value="3" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_treeOrder1" value="1" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_treeOrder2" value="2" />
-    <property name="options.lastSelected" value="preferences.sourceCode.General" />
+    <property name="options.lastSelected" value="editor.preferences.smartKeys" />
     <property name="restartRequiresConfirmation" value="true" />
     <property name="options.searchVisible" value="true" />
   </component>
@@ -308,6 +251,11 @@
         </serverdata>
       </server>
     </servers>
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\metaljello\Documents\GitHub\Multiroom-Chat\public\fonts" />
+    </key>
   </component>
   <component name="RunManager" selected="Node.js.app.js">
     <configuration default="false" name="app.js" type="NodeJSConfigurationType" factoryName="Node.js" temporary="true" path-to-node="C:/Program Files/nodejs/node" path-to-js-file="app.js" working-dir="$PROJECT_DIR$">
@@ -406,7 +354,11 @@
       <created>1371410553774</created>
       <updated>1371410553774</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="updates">
+      <created>1371442599139</created>
+      <updated>1371442599139</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TodoView" selected-index="0">
@@ -430,23 +382,23 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
+    <frame x="-1608" y="172" width="1616" height="916" extended-state="6" />
     <editor active="false" />
     <layout>
-      <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3277592" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32938075" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32893" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3272933" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32842582" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32369298" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.21665788" sideWeight="0.5852048" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.15472417" sideWeight="0.67107004" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39933258" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.15028535" sideWeight="0.28533685" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.61507404" sideWeight="0.500657" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.41479525" sideWeight="0.49934298" order="2" side_tool="false" content_ui="tabs" x="554" y="23" width="761" height="1016" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.49830124" sideWeight="0.5005429" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="FLOATING" visible="false" weight="0.25032938" sideWeight="0.49837133" order="2" side_tool="false" content_ui="tabs" x="554" y="23" width="761" height="1016" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32998884" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32928476" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
@@ -531,31 +483,6 @@
     </PATH>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/README.md">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="2" column="174" selection-start="302" selection-end="302" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-      <provider editor-type-id="MarkdownPreviewEditor">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/public/js/chat.js">
       <provider selected="true" editor-type-id="text-editor">
         <state line="18" column="19" selection-start="494" selection-end="494" vertical-scroll-proportion="0.0" />
@@ -591,36 +518,183 @@
         <state line="334" column="21" selection-start="6656" selection-end="6656" vertical-scroll-proportion="0.3034682" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app.js">
+    <entry file="file://$PROJECT_DIR$/README.md">
+      <provider editor-type-id="MarkdownPreviewEditor">
+        <state />
+      </provider>
       <provider selected="true" editor-type-id="text-editor">
-        <state line="294" column="66" selection-start="9677" selection-end="9677" vertical-scroll-proportion="0.0" />
+        <state line="6" column="26" selection-start="380" selection-end="380" vertical-scroll-proportion="0.09478673" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/public/js/chat.js">
+    <entry file="file://$PROJECT_DIR$/public/scripts/chat.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="56" column="58" selection-start="1722" selection-end="1722" vertical-scroll-proportion="0.0" />
+        <state line="15" column="141" selection-start="451" selection-end="451" vertical-scroll-proportion="0.4793233">
+          <folding>
+            <element signature="n#!!block;n#fetchHighlights#0" expanded="true" />
+            <element signature="e#489#1485#0" expanded="true" />
+            <element signature="e#604#1482#0" expanded="true" />
+            <element signature="e#1349#1426#0" expanded="true" />
+            <element signature="n#!!block;n#fetchNew#0" expanded="true" />
+            <element signature="e#1556#4268#0" expanded="true" />
+            <element signature="e#1657#4265#0" expanded="true" />
+            <element signature="e#3228#3503#0" expanded="true" />
+            <element signature="n#!!block;n#trackWorkers#0" expanded="true" />
+            <element signature="e#4331#4926#0" expanded="true" />
+            <element signature="e#4442#4923#0" expanded="true" />
+            <element signature="e#4805#4870#0" expanded="true" />
+            <element signature="e#5011#5353#0" expanded="true" />
+            <element signature="e#5249#5310#0" expanded="true" />
+            <element signature="n#!!block;n#refreshView#0" expanded="true" />
+            <element signature="e#5765#7491#0" expanded="true" />
+            <element signature="e#6341#6949#0" expanded="true" />
+            <element signature="e#6534#6936#0" expanded="true" />
+            <element signature="e#6699#6929#0" expanded="true" />
+            <element signature="e#7008#7482#0" expanded="true" />
+            <element signature="e#7114#7469#0" expanded="true" />
+            <element signature="e#7281#7462#0" expanded="true" />
+            <element signature="n#!!block;n#recalculateVotes#0" expanded="true" />
+            <element signature="e#7685#8504#0" expanded="true" />
+            <element signature="e#7831#7986#0" expanded="true" />
+            <element signature="e#7942#7981#0" expanded="true" />
+            <element signature="n#!!block;n#highlightMessage#0" expanded="true" />
+            <element signature="e#8570#8729#0" expanded="true" />
+            <element signature="e#8851#13983#0" expanded="true" />
+            <element signature="e#9320#9485#0" expanded="true" />
+            <element signature="e#9823#9895#0" expanded="true" />
+            <element signature="e#10631#10798#0" expanded="true" />
+            <element signature="e#10986#11472#0" expanded="true" />
+            <element signature="e#11240#11455#0" expanded="true" />
+            <element signature="e#11396#11448#0" expanded="true" />
+            <element signature="e#11515#11707#0" expanded="true" />
+            <element signature="e#11747#11837#0" expanded="true" />
+            <element signature="e#11879#13099#0" expanded="true" />
+            <element signature="e#11992#13056#0" expanded="true" />
+            <element signature="e#12147#13050#0" expanded="true" />
+            <element signature="e#12535#13033#0" expanded="true" />
+            <element signature="e#12708#13024#0" expanded="true" />
+            <element signature="e#13239#13355#0" expanded="true" />
+            <element signature="e#13395#13508#0" expanded="true" />
+            <element signature="n#!!block;n#playSound#0" expanded="true" />
+            <element signature="e#14090#14152#0" expanded="true" />
+            <element signature="e#14257#14318#0" expanded="true" />
+            <element signature="n#!!block;n#sortList#0" expanded="true" />
+            <element signature="e#14509#14803#0" expanded="true" />
+            <element signature="e#14885#15064#0" expanded="true" />
+            <element signature="e#15095#15115#0" expanded="true" />
+            <element signature="e#15568#15640#0" expanded="true" />
+            <element signature="n#!!block;n#allowParticipation#0" expanded="true" />
+            <element signature="n#!!block;n#reduceParticipation#0" expanded="true" />
+            <element signature="n#!!block;n#increaseParticipation#0" expanded="true" />
+            <element signature="n#!!block;n#getExpirations#0" expanded="true" />
+            <element signature="e#16170#16448#0" expanded="true" />
+            <element signature="e#16295#16445#0" expanded="true" />
+            <element signature="n#!!block;n#abstain_reward#0" expanded="true" />
+            <element signature="n#!!block;n#activateHighlightBox#0" expanded="true" />
+            <element signature="n#!!block;n#crowdTyping#0" expanded="true" />
+            <element signature="n#!!block;n#requesterTyping#0" expanded="true" />
+            <element signature="e#17349#17487#0" expanded="true" />
+            <element signature="n#!!block;n#typing#0" expanded="true" />
+            <element signature="e#17688#17954#0" expanded="true" />
+            <element signature="e#17823#17950#0" expanded="true" />
+            <element signature="n#!!block;n#getMajority#0" expanded="true" />
+            <element signature="e#17996#18221#0" expanded="true" />
+            <element signature="e#18138#18218#0" expanded="true" />
+            <element signature="n#!!block;n#chatAlerts#0" expanded="true" />
+            <element signature="e#18446#18541#0" expanded="true" />
+            <element signature="e#18666#18714#0" expanded="true" />
+            <element signature="n#!!block;n#transcribe#0" expanded="true" />
+            <element signature="n#!!block;n#speak#0" expanded="true" />
+            <element signature="n#!!block;n#onYouTubePlayerReady#0" expanded="true" />
+            <element signature="n#!!block;n#onytplayerStateChange#0" expanded="true" />
+            <element signature="e#19423#19455#0" expanded="true" />
+            <element signature="n#!!block;n#highlightToChat#0" expanded="true" />
+            <element signature="e#19647#19744#0" expanded="true" />
+            <element signature="e#19844#19891#0" expanded="true" />
+            <marker date="1371510807023" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1371510807023" expanded="true" signature="-1:-1" placeholder="..." />
+          </folding>
+        </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/public/css/originalchatstyles.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="126" column="0" selection-start="2507" selection-end="2507" vertical-scroll-proportion="0.0">
+        <state line="126" column="0" selection-start="2507" selection-end="2507" vertical-scroll-proportion="0.84805655">
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/css/style.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/fonts/stylesheet.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="11" column="21" selection-start="424" selection-end="424" vertical-scroll-proportion="0.3303887">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/js/chat.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="49" column="42" selection-start="1525" selection-end="1525" vertical-scroll-proportion="0.0">
+          <folding>
+            <element signature="n#!!block;n#addVote#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/views/chat.jade">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="5" column="99" selection-start="207" selection-end="207" vertical-scroll-proportion="0.09269357" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/README.md">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="6" column="26" selection-start="380" selection-end="380" vertical-scroll-proportion="0.09163803">
+        <state line="4" column="20" selection-start="125" selection-end="125" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
-      <provider editor-type-id="MarkdownPreviewEditor">
-        <state />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/css/chat.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="60" column="11" selection-start="801" selection-end="801" vertical-scroll-proportion="-4.92">
+          <folding>
+            <element signature="e#5#128#0" expanded="false" />
+            <element signature="e#136#193#0" expanded="false" />
+            <element signature="e#213#272#0" expanded="false" />
+            <element signature="e#283#316#0" expanded="false" />
+            <element signature="e#476#502#0" expanded="false" />
+            <element signature="e#511#537#0" expanded="false" />
+            <element signature="e#688#761#0" expanded="false" />
+            <element signature="e#770#788#0" expanded="false" />
+            <element signature="e#801#1664#0" expanded="false" />
+            <element signature="e#1682#1713#0" expanded="false" />
+            <element signature="e#1722#1746#0" expanded="false" />
+            <element signature="e#1752#1865#0" expanded="false" />
+            <element signature="e#1870#2054#0" expanded="false" />
+            <element signature="e#2062#2082#0" expanded="false" />
+            <element signature="e#2093#2183#0" expanded="false" />
+            <element signature="e#2197#2251#0" expanded="false" />
+            <element signature="e#2272#2334#0" expanded="false" />
+            <element signature="e#2355#2417#0" expanded="false" />
+            <element signature="e#2438#2500#0" expanded="false" />
+            <element signature="e#2512#2610#0" expanded="false" />
+            <element signature="e#2621#2719#0" expanded="false" />
+            <element signature="e#2729#2767#0" expanded="false" />
+            <element signature="e#2965#3126#0" expanded="false" />
+            <element signature="e#3139#3334#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="363" column="82" selection-start="12050" selection-end="12050" vertical-scroll-proportion="3.421162">
+          <folding>
+            <element signature="e#3373#5415#0" expanded="true" />
+            <element signature="e#6815#8412#0" expanded="true" />
+            <element signature="e#10229#10923#0" expanded="true" />
+            <element signature="e#10486#10595#0" expanded="true" />
+          </folding>
+        </state>
       </provider>
     </entry>
   </component>
