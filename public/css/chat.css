@@ -12,7 +12,7 @@ body {
 
 	#header, #footer {
 		width:100%;
-		float:left;
+		clear:both;
 		background-color: white;
 	}
 
@@ -63,7 +63,7 @@ body {
 	margin-left   : auto;
 	margin-right  : auto;
 	height        : 500px;
-	max-width     : 1000;
+	max-width     : 1000px;
 	padding-right : 150px;
 	background-color:rgb(247,247,249);
 	-moz-border-radius: 3px;
@@ -94,6 +94,23 @@ body {
 	background: url(../img/hr.png) no-repeat;
 	display: block;
 	margin: 40px auto;
+}
+
+h1 {
+	background: #f5f5f5 url(../img/top.png) repeat left top;
+	font-size:16px;
+	font-weight:bold;
+	text-shadow:0px 1px 0px rgba(255,255,255,0.35);
+	position: absolute;
+	top: -10px;
+	text-align: center;
+	line-height: 54px;
+	width: 370px;
+	height: 55px;
+	color: #535455;
+	-moz-border-radius: 5px 5px 0px 0px;
+	-webkit-border-radius: 5px 5px 0px 0px;
+	border-radius: 5px 5px 0px 0px;
 }
 
 h3 {
