@@ -1,6 +1,8 @@
 Multiroom-Chat
 ==============
 
+*First project I ever attempted*
+
 Multiroom-Chat is a chat application that allows workers to transparently suggest and vote on answers
 to users questions, that are then shown to users once a suggestion reaches a certain number of votes.  It allows
 multiple workers to answer questions in a vox populi fashion, without the user ever knowing how many people
